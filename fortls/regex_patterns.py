@@ -146,7 +146,7 @@ class FortranRegularExpressions:
     # Object regex patterns
     CLASS_VAR: Pattern = compile(r"(TYPE|CLASS)[ ]*\(", I)
     DEF_KIND: Pattern = compile(r"(\w*)[ ]*\((?:KIND|LEN)?[ =]*(\w*)", I)
-    OBJBREAK: Pattern = compile(r"[\/\-(.,+*<>=$: ]", I)
+    OBJBREAK: Pattern = compile(r"[\/\-(,+*<>=$: ]", I)
 
 
 def src_file_exts(input_exts: list[str] = []) -> Pattern[str]:

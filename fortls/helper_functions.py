@@ -543,19 +543,19 @@ def get_var_stack(line: str) -> list[str]:
     Returns
     -------
     list[str]
-        list of objects split by ``%``
+        list of objects split by ``.``
 
     Examples
     --------
-    >>> get_var_stack('myvar%foo%bar')
+    >>> get_var_stack('myvar.foo.bar')
     ['myvar', 'foo', 'bar']
 
-    >>> get_var_stack('myarray(i)%foo%bar')
+    >>> get_var_stack('myarray(i).foo.bar')
     ['myarray', 'foo', 'bar']
 
-    In this case it will operate at the end of the string i.e. ``'this%foo'``
+    In this case it will operate at the end of the string i.e. ``'this.foo'``
 
-    >>> get_var_stack('CALL self%method(this%foo')
+    >>> get_var_stack('CALL self.method(this.foo')
     ['this', 'foo']
 
     >>> get_var_stack('')
@@ -566,10 +566,10 @@ def get_var_stack(line: str) -> list[str]:
     final_var, sections = get_paren_level(line)
     if final_var == "":
         return [""]
-    # Continuation of variable after paren requires '%' character
+    # Continuation of variable after paren requires '.' character
     iLast = 0
     for i, section in enumerate(sections):
-        if not line[section.start : section.end].startswith("%"):
+        if not line[section.start : section.end].startswith("."):
             iLast = i
     final_var = ""
     for section in sections[iLast:]:
@@ -577,7 +577,7 @@ def get_var_stack(line: str) -> list[str]:
 
     if final_var is not None:
         final_op_split: list[str] = FRegex.OBJBREAK.split(final_var)
-        return final_op_split[-1].split("%")
+        return final_op_split[-1].split(".")
     else:
         return None
 
