@@ -130,7 +130,7 @@ class FortranRegularExpressions:
     PP_INCLUDE: Pattern = compile(r"#include[ ]*([\"\w\.]*)", I)
     PP_ANY: Pattern = compile(r"(^#:?\w+)")
     # Context matching rules
-    CALL: Pattern = compile(r"[ ]*CALL[ ]+[\w%]*$", I)
+    CALL: Pattern = compile(r"[ ]*CALL[ ]+[\w.]*$", I)
     INT_STMNT: Pattern = compile(r"^[ ]*[a-z]*$", I)
     TYPE_STMNT: Pattern = compile(r"[ ]*(TYPE|CLASS)[ ]*(IS)?[ ]*$", I)
     PROCEDURE_STMNT: Pattern = compile(r"[ ]*(PROCEDURE)[ ]*$", I)
